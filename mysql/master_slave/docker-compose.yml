@@ -1,6 +1,7 @@
 version: '3'
 services:
   master:
+    container_name: master
     build: # 使用Dockerfile-master 文件构建镜像
       context: .
       dockerfile: Dockerfile-master
@@ -16,6 +17,7 @@ services:
     ports:
       - "3306:3306"
   slave1:
+    container_name: slave1
     build:
       context: .
       dockerfile: Dockerfile-slave
@@ -33,6 +35,7 @@ services:
     ports:
       - "3307:3306"
   slave2:
+    container_name: slave2
     build:
       context: .
       dockerfile: Dockerfile-slave
@@ -48,8 +51,8 @@ services:
       - mysql-net
     # 设置端口
     ports:
-      - "3307:3306"
+      - "3308:3306"
 # 设置网络
 networks:
   mysql-net:
-    driver: bridge
+    driver: bridge # 桥接模式

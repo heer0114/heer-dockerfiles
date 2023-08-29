@@ -1,0 +1,6 @@
+# mysql 8
+FROM mysql:8
+# 添加配置文件
+COPY master.cnf /etc/mysql/conf.d/master.cnf
+# 端口
+EXPOSE 3306

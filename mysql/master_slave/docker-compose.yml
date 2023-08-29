@@ -1,0 +1,55 @@
+version: '3'
+services:
+  master:
+    build: # 使用Dockerfile-master 文件构建镜像
+      context: .
+      dockerfile: Dockerfile-master
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456 #  设置root用户的密码
+      - MYSQL_DATABASE=heer #  设置数据库名
+      - MYSQL_ALLOW_EMPTY_PASSWORD=no  #  不能使用空密码
+      - MYSQL_ROOT_HOST=%  #  任何地址
+    # 设置网络
+    networks:
+      - mysql-net
+    # 设置端口
+    ports:
+      - "3306:3306"
+  slave1:
+    build:
+      context: .
+      dockerfile: Dockerfile-slave
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_DATABASE=heer
+      - MYSQL_ALLOW_EMPTY_PASSWORD=no  #  不能使用空密码
+      - MYSQL_ROOT_HOST=%  #  任何地址
+    depends_on: # 设置依赖关系
+      - master
+    # 设置网络
+    networks:
+      - mysql-net
+    # 设置端口
+    ports:
+      - "3307:3306"
+  slave2:
+    build:
+      context: .
+      dockerfile: Dockerfile-slave
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_DATABASE=heer
+      - MYSQL_ALLOW_EMPTY_PASSWORD=no  #  不能使用空密码
+      - MYSQL_ROOT_HOST=%  #  任何地址
+    depends_on:
+      - master
+    # 设置网络
+    networks:
+      - mysql-net
+    # 设置端口
+    ports:
+      - "3307:3306"
+# 设置网络
+networks:
+  mysql-net:
+    driver: bridge

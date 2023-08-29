@@ -1,0 +1,6 @@
+# mysql 版本
+FROM mysql:8
+# 添加配置文件
+COPY slave.cnf /etc/mysql/conf.d/slave.cnf
+# 端口
+EXPOSE 3306

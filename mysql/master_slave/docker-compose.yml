@@ -2,6 +2,8 @@ version: '3'
 services:
   master:
     container_name: master
+    image: mysql:8
+    restart: always
     build: # 使用Dockerfile-master 文件构建镜像
       context: .
       dockerfile: Dockerfile-master
@@ -18,6 +20,8 @@ services:
       - "3306:3306"
   slave1:
     container_name: slave1
+    image: mysql:8
+    restart: always
     build:
       context: .
       dockerfile: Dockerfile-slave
@@ -36,6 +40,8 @@ services:
       - "3307:3306"
   slave2:
     container_name: slave2
+    image: mysql:8
+    restart: always
     build:
       context: .
       dockerfile: Dockerfile-slave

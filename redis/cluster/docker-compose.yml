@@ -1,0 +1,46 @@
+version: '3'
+services:
+  redis1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: redis1
+    restart: always
+    ports:
+      - "6001:6001"
+    volumes:
+      - ./data/redis1:/data
+    networks:
+      - redis_cluster
+
+  redis2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: redis2
+    restart: always
+    ports:
+      - "6002:6002"
+    volumes:
+      - ./data/redis2:/data
+    networks:
+      - redis_cluster
+
+  redis3:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: redis3
+    restart: always
+    ports:
+      - "6003:6003"
+    volumes:
+      - ./data/redis3:/data
+    networks:
+      - redis_cluster
+
+## 网络
+networks:
+  redis_cluster:
+    driver: bridge
+

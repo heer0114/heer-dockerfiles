@@ -8,6 +8,7 @@ services:
     restart: always
     ports:
       - "6001:6001"
+      - "6379:6379"
     volumes:
       - ./data/redis1:/data
     networks:
@@ -21,6 +22,7 @@ services:
     restart: always
     ports:
       - "6002:6002"
+      - "6378:6379"
     volumes:
       - ./data/redis2:/data
     networks:
@@ -34,6 +36,7 @@ services:
     restart: always
     ports:
       - "6003:6003"
+      - "6377:6379"
     volumes:
       - ./data/redis3:/data
     networks:

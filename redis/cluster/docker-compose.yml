@@ -7,7 +7,7 @@ services:
     container_name: redis1
     restart: always
     ports:
-      - "6001:6666"
+      - "6379:6379"
     volumes:
       - ./data/redis1:/data
     networks:
@@ -20,7 +20,7 @@ services:
     container_name: redis2
     restart: always
     ports:
-      - "6002:6666"
+      - "6380:6379"
     volumes:
       - ./data/redis2:/data
     networks:
@@ -33,7 +33,7 @@ services:
     container_name: redis3
     restart: always
     ports:
-      - "6003:6666"
+      - "6381:6379"
     volumes:
       - ./data/redis3:/data
     networks:

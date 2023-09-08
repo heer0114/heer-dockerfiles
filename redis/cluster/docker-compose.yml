@@ -9,7 +9,7 @@ services:
     ports:
       - "6379:6379"
     volumes:
-      - ./data/redis1:/data
+      - ~/data/redis1:/data
     networks:
       - redis_cluster
 
@@ -22,7 +22,7 @@ services:
     ports:
       - "6380:6379"
     volumes:
-      - ./data/redis2:/data
+      - ~/data/redis2:/data
     networks:
       - redis_cluster
 
@@ -35,7 +35,7 @@ services:
     ports:
       - "6381:6379"
     volumes:
-      - ./data/redis3:/data
+      - ~/data/redis3:/data
     networks:
       - redis_cluster
 

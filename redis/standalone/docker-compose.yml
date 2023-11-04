@@ -1,0 +1,20 @@
+version: '3'
+services:
+  redis:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - ~/data/redis:/data
+    networks:
+      - redis_standalone
+
+## 网络
+networks:
+  redis_standalone:
+    driver: bridge
+
